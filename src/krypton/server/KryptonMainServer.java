@@ -233,7 +233,7 @@ class socket1 implements Runnable {
     
     @Override
     public void run() {
-        //System.setProperty("javax.net.ssl.keyStore", "/home/e-kraal/mykeystore/examplestore");
+        //System.setProperty("javax.net.ssl.keyStore", "/home/x/mykeystore/examplestore");
         //System.setProperty("javax.net.ssl.keyStorePassword", "paulmbugua");
         //SSLServerSocketFactory sf=(SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
         while(true){  
@@ -248,7 +248,7 @@ class socket1 implements Runnable {
                 DataOutputStream dos = new DataOutputStream(s.getOutputStream()); 
             String input = (String)dis.readUTF();
                 
-        String filenameout="/home/e-kraal/Krypton/server.private.key"; 
+        String filenameout="/home/x/Krypton/server.private.key"; 
         KryptonMainServer ks =new KryptonMainServer();        
         PrivateKey serverpriv=ks.getPrivate(filenameout);    
         String result=ks.decryptText(input, serverpriv); 
@@ -275,13 +275,13 @@ class socket1 implements Runnable {
        if(!rs.next())
        {           
           String log="wrong attempt by email: "+ email;
-          ks.writelogs(log, "/home/e-kraal/Krypton/logs.txt");
+          ks.writelogs(log, "/home/x/Krypton/logs.txt");
           dos.writeUTF("false");
            
        }
        else{
             String log="Successful attempt by email: "+email;
-            ks.writelogs(log, "/home/e-kraal/Krypton/logs.txt");
+            ks.writelogs(log, "/home/x/Krypton/logs.txt");
             PublicKey pk=ks.getPublic(rs.getString(1));
             x="true";res = ks.encryptText(x,pk);
             dos.writeUTF(res);
@@ -303,7 +303,7 @@ class Socket2 implements Runnable {
 
     @Override
     public void run() {
-          //System.setProperty("javax.net.ssl.keyStore", "/home/e-kraal/mykeystore/examplestore");
+          //System.setProperty("javax.net.ssl.keyStore", "/home/x/mykeystore/examplestore");
        // System.setProperty("javax.net.ssl.keyStorePassword", "paulmbugua");
      // SSLServerSocketFactory sf=(SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
       while(true){  
@@ -324,8 +324,8 @@ class Socket2 implements Runnable {
             ResultSet rs1=pstmt1.executeQuery();
        if(!rs1.next())
        {    String log="Request for the publickey of email  "+emailz+"failed ";
-            ks1.writelogs(log, "/home/e-kraal/Krypton/logs.txt");
-            File myfile= new File("/home/e-kraal/Krypton/blank");
+            ks1.writelogs(log, "/home/x/Krypton/logs.txt");
+            File myfile= new File("/home/x/Krypton/blank");
             byte[] mb =new byte[(int) myfile.length()];
             BufferedInputStream bis =new BufferedInputStream(new FileInputStream(myfile));
             bis.read(mb,0,mb.length);
@@ -335,7 +335,7 @@ class Socket2 implements Runnable {
            
        }
        else{String log="Request for the publickey of email "+emailz+"successful ";
-            ks1.writelogs(log, "/home/e-kraal/Krypton/logs.txt");
+            ks1.writelogs(log, "/home/x/Krypton/logs.txt");
            
             File myfile= new File(rs1.getString(1));
             byte[] mb =new byte[(int) myfile.length()];
